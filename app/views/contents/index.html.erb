@@ -1,0 +1,28 @@
+<% content_for :title, "Contents" %>
+<p style="color: green"><%= notice %></p>
+
+<h1>Contents (<%= @contents_count %>)</h1>
+
+<div class="searchbar">
+  <%= form_with url: contents_path, method: :get, local: true do |f| %>
+    <%= f.text_field :q, placeholder: "Search contents...", value: params[:q] %>
+    <%= f.text_field :c, placeholder: "Categories...", value: params[:c] %>
+    <%= image_submit_tag("icons/search.svg", alt: "Search") %>
+  <% end %>
+</div>
+
+<% if @contents_count > 30 %>
+  <div class="add-item">
+    <%= link_to "New content", new_content_path %>
+  </div>
+<% end %>
+
+<div id="contents">
+  <% @contents.each do |content| %>
+    <%= render content %>
+  <% end %>
+</div>
+
+<div class="add-item">
+  <%= link_to "New content", new_content_path %>
+</div>

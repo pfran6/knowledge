@@ -1,0 +1,220 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+body {
+
+  #topnav {
+    overflow: hidden;
+    background-color: #333;
+
+    a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+    .right {
+      float: right;
+    }
+  }
+
+  #main {
+    max-width: 80%;
+    margin: auto;
+
+    #contents, #categories {
+      margin-bottom: 2em;
+    }
+    #categories {
+      .category {
+        display: flex;
+        width: 100%;
+        height: 150px;
+        .image {
+          width: 15%;
+          display: block;
+          margin: auto;
+          text-align: center;
+        }
+        .info {
+          width: 85%;
+          .info-title {
+            font-weight: bold;
+          }
+          .info-description {
+            color: #002233;
+            text-align: justify;
+          }
+        }
+      }
+    }
+    #category {
+      .image {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2em;
+      }
+    }
+    #log {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .content {
+      margin-bottom: 0.5em;
+      text-align: justify;
+    }
+    .title {
+      color: #00334D;
+    }
+    .body {
+      color: #002233;
+    }
+
+    .actions {
+      margin-bottom: 2em;
+      a, button {
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        a {
+          flex-grow: 1;
+          background-color: #ff9966;
+        }
+      }
+      .delete {
+        a {
+          display: block;
+          background-color: #cc0000;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .add-item {
+      a {
+        display: block;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px;
+        background-color: #ff9966;
+        font-weight: bold;
+        margin-bottom: 2em;
+      }
+      a:hover {
+        background-color: #e65c00;
+      }
+    }
+
+    .show {
+      text-align: center;
+      margin-bottom: 2em;
+      .title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 1em;
+        color: #00334D;
+      }
+      .body {
+        text-align: justify;
+        color: #002233;
+      }
+    }
+
+    .searchbar {
+      border-radius: 12px;
+      margin-bottom: 1em;
+      form {
+        display: flex;
+        flex-direction: row;
+        input[type=text] {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          box-sizing: border-box;
+        }
+        input[type=submit] {
+          float: right;
+          height: 32px;
+          width: 32px;
+          margin: 8px 0;
+        }
+      }
+    }
+
+    .form, #log {
+      form {
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        padding: 20px;
+
+        input[type=text], input[type=file], input[type=password], select {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          box-sizing: border-box;
+        }
+
+        input[type=submit] {
+          width: 100%;
+          background-color: #2eb82e;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: bold;
+        }
+
+        input[type=submit]:hover {
+          background-color: #29a329;
+        }
+      }
+    }
+  }
+
+  background-color: #ffffff;
+  margin: 0;
+}

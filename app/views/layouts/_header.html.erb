@@ -1,0 +1,17 @@
+<div id="topnav">
+  <% if current_page?(root_path) || request.original_url.include?(contents_path) %>
+    <%= link_to "Contents", root_path, class: "active" %>
+  <% else %>
+    <%= link_to "Contents", root_path %>
+  <% end %>
+
+  <% if request.original_url.include?(categories_path) %>
+    <%= link_to "Categories", categories_path, class: "active" %>
+  <% else %>
+    <%= link_to "Categories", categories_path %>
+  <% end %>
+
+  <% if authenticated? %>
+    <%= link_to "Log out", session_path, class: "right", data: { turbo_method: :delete } %>
+  <% end %>
+</div>

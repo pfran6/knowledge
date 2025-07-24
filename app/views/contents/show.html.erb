@@ -1,0 +1,38 @@
+<% content_for :title, @content.title %>
+
+<div id="content">
+  <p style="color: green"><%= notice %></p>
+
+  <div class=show>
+    <%= @content.content_type.title %>
+
+    <div class=title><%= @content.title %></div>
+    <div class="body"><%= @content.body %></div>
+  </div>
+
+  <div class="actions">
+    <div class="row">
+      <%= link_to "Edit this content", edit_content_path(@content) %>
+      <%= link_to "Back to contents", contents_path %>
+    </div>
+
+    <div class="delete">
+      <%# button_to "Destroy this content", @content, method: :delete, data: { confirm: "Are you sure?" } %>
+      <%= link_to "Destroy this content", @content, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    </div>
+  </div>
+
+  <div>
+    Remove categories:
+    <% @content.categories.each do |category| %>
+      <%= button_to category.title, content_remove_category_path(@content, category), method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
+  </div>
+
+  <div>
+    Add categories:
+    <% @categories.each do |category| %>
+      <%= button_to category.title, content_add_category_path(@content, category), method: :post %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="category">
+  <div class="image">
+    <% if category.image.attached? %>
+      <%= image_tag category.image.variant(resize_to_limit: [120,120]) %>
+    <% else %>
+      <%= image_tag "empty.png", alt: "no image" %>
+    <% end %>
+  </div>
+
+  <div class="info">
+    <div class="info-title">
+      <%= link_to category.title, category %>
+    </div>
+
+    <div class="info-description">
+      <%= category.description %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<% content_for :title, @category.title %>
+
+<div id="category">
+  <p style="color: green"><%= notice %></p>
+
+  <% if @category.image.attached? %>
+    <div class="image">
+      <%= image_tag @category.image.variant(resize_to_limit: [500,500]) %>
+    </div>
+  <% end %>
+
+  <div class="show">
+    <div class="title"><%= @category.title %></div>
+
+    <div class="body">
+      <%= @category.body %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <div class="row">
+      <%= link_to "Edit this category", edit_category_path(@category) %>
+      <%= link_to "Back to categories", categories_path %>
+    </div>
+    <div class="delete">
+      <%# button_to "Destroy this category", @category, method: :delete %>
+      <%= link_to "Destroy this category", @category, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    </div>
+  </div>
+</div>
