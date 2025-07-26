@@ -13,13 +13,13 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV.fetch("DB_USER") %>
-  password: <%= ENV.fetch("DB_PASSWORD") %>
-  host: <%= ENV.fetch("DB_HOST") { "127.0.0.1" } %>
 
 development:
   <<: *default
   database: knowledge_development
+  username: <%= Rails.application.credentials.dig(:database_development, :username) %>
+  password: <%= Rails.application.credentials.dig(:database_development, :password) %>
+  host: <%= Rails.application.credentials.dig(:database_development, :host) %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -52,9 +52,9 @@ production:
   primary: &primary_production
     <<: *default
     database: knowledge_production
-    username: <%= ENV["KNOWLEDGE_DATABASE_USERNAME"] %>
-    password: <%= ENV["KNOWLEDGE_DATABASE_PASSWORD"] %>
-    host: <%= ENV["KNOWLEDGE_DATABASE_HOST"] %>
+    username: <%= Rails.application.credentials.dig(:database_production, :username) %>
+    password: <%= Rails.application.credentials.dig(:database_production, :password) %>
+    host: <%= Rails.application.credentials.dig(:database_production, :host) %>
   cache:
     <<: *primary_production
     database: knowledge_production_cache

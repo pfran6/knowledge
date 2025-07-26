@@ -107,6 +107,6 @@ class ContentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def content_params
-      params.expect(content: [ :slug, :content_type_id, :title, :description, :body, :attachements ]).reverse_merge(body: "", attachements: [])
+      params.expect(content: [ :slug, :content_type_id, :title, :description, :body, :attachements ])
     end
 end
