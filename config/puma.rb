@@ -27,13 +27,12 @@
 threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
 threads threads_count, threads_count
 
-if Rails.env.production?
+if ENV["RAILS_ENV"] == "production"
   # Bind config saved in credentials.yml.enc
-  Rails.application.credentials.dig(:production, :bind)
+  bind ENV["RAILS_BIND"]
 else
   # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
-  # port ENV.fetch("PORT", 3000)
-  Rails.application.credentials.dig(:development, :bind)
+  port ENV.fetch("PORT", 3000)
 end
 
 # Allow puma to be restarted by `bin/rails restart` command.

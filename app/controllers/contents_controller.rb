@@ -1,5 +1,6 @@
 class ContentsController < ApplicationController
   before_action :set_content, only: %i[ show edit update destroy ]
+  before_action :verify_update, only: %i[ edit update destroy ]
 
   # GET /contents or /contents.json
   def index
@@ -84,19 +85,25 @@ class ContentsController < ApplicationController
   end
 
   def add_category
-    content = Content.find_by(slug: params.expect(:content_slug))
-    category = Category.find_by(slug: params.expect(:category_slug))
-    content.categories << category
+    @content = Content.find_by(slug: params.expect(:content_slug))
 
-    redirect_to content, notice: "The category was successfully added."
+    verify_update
+
+    @category = Category.find_by(slug: params.expect(:category_slug))
+    @content.categories << @category
+
+    redirect_to @content, notice: "The category was successfully added."
   end
 
   def remove_category
-    content = Content.find_by(slug: params.expect(:content_slug))
-    category = Category.find_by(slug: params.expect(:category_slug))
-    content.categories.delete(category)
+    @content = Content.find_by(slug: params.expect(:content_slug))
 
-    redirect_to content, notice: "The category was successfully deleted."
+    verify_update
+
+    @category = Category.find_by(slug: params.expect(:category_slug))
+    @content.categories.delete(@category)
+
+    redirect_to @content, notice: "The category was successfully deleted."
   end
 
   private
@@ -108,5 +115,12 @@ class ContentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def content_params
       params.expect(content: [ :slug, :content_type_id, :title, :description, :body, :attachements ])
+    end
+
+    def verify_update
+      if !@content.can_update?
+        # render :show, status: :unauthorized
+        redirect_to @content
+      end
     end
 end

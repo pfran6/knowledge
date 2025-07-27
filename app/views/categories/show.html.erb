@@ -3,7 +3,7 @@
 <div id="category">
   <p style="color: green"><%= notice %></p>
 
-  <% if @category.image.attached? %>
+  <% if @category.image.attached? && @category.image.variable? %>
     <div class="image">
       <%= image_tag @category.image.variant(resize_to_limit: [500,500]) %>
     </div>
@@ -17,14 +17,22 @@
     </div>
   </div>
 
-  <div class="actions">
-    <div class="row">
-      <%= link_to "Edit this category", edit_category_path(@category) %>
-      <%= link_to "Back to categories", categories_path %>
+  <% if @category.can_update? %>
+    <div class="actions">
+      <div class="row">
+        <%= link_to "Edit this category", edit_category_path(@category) %>
+        <%= link_to "Back to categories", categories_path %>
+      </div>
+      <div class="delete">
+        <%# button_to "Destroy this category", @category, method: :delete %>
+        <%= link_to "Destroy this category", @category, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      </div>
     </div>
-    <div class="delete">
-      <%# button_to "Destroy this category", @category, method: :delete %>
-      <%= link_to "Destroy this category", @category, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+  <%else%>
+    <div class="actions">
+      <div class="row">
+        <%= link_to "Back to categories", categories_path %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>

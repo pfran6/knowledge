@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
+  before_action :verify_update, only: %i[ update edit destroy ]
 
   # GET /categories or /categories.json
   def index
@@ -16,6 +17,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1 or /categories/1.json
   def show
+    @category_update = (@category.user == Current.user)
   end
 
   # GET /categories/new
@@ -75,5 +77,12 @@ class CategoriesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def category_params
       params.expect(category: [ :slug, :title, :description, :body, :image ])
+    end
+
+    def verify_update
+      if !@category.can_update?
+        # render :show, status: :unauthorized
+        redirect_to @category
+      end
     end
 end

@@ -15,4 +15,9 @@ class Content < ApplicationRecord
   def to_param
     self.slug
   end
+
+  def can_update?
+    self.user == Current.user
+  end
+
 end
